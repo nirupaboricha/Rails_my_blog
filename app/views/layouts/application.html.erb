@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Blog</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+</head>
 
   <body>
-    <%= yield %>
+    <div id="sidebar">
+	<div id ="logo"</div>
+	<%= link_to root_path do %>
+	  <%= image_tag "" %>
+	<% end %>
+    </div>
+
+     <ul>
+	<li class="category">Website</li>
+	<li><%= link_to "Blog", root_path %></li>
+	<li>About</li>
+     </ul>
+
+     <ul>
+	<li class="category">Social</li>
+	<li><a href="https://github.com/nirupaboricha">Github</a></li>
+	<li><a href="http://stackoverflow.com/users/6027959/nirupa">Stackoverflow</a></li>
+	<li><a href="https://www.linkedin.com/in/nirupaboricha?trk=nav_responsive_tab_profile">LinkedIn</a></li>
+	<li><a href="mailto:nirupa.boricha@yahoo.com">Email</a></li>
+     </ul>
+     <p class="sign_in">Admin Login</p>
+   </div>
+
+   <div id="main_content">
+	<div id = "header">
+	  <p>All Posts</p>
+
+	  <div class="buttons">
+	    <button class="button"><%= link_to "New Post", new_post_path %></button>
+	    <button class="button">Log Out</button>
+	  </div>
+	</div>
+
+      <% flash.each do |name,msg| %>
+	<%= content_tag(:div, msg, class: "alert") %>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+    
+
   </body>
 </html>
